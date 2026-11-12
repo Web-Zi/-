@@ -34,7 +34,7 @@ h1{font:700 34px 'El Messiri',Tahoma,sans-serif;margin:0;color:var(--y)}.h p{mar
 .rw{display:flex;gap:8px;align-items:baseline;padding:9px 14px}.rw span{max-width:76%;color:var(--r);font-weight:600;line-height:1.5}
 .rw i{flex:1;min-width:14px;border-bottom:2px dotted #8a1c1c55}
 .rw b{background:var(--m);color:var(--y);border-radius:10px;padding:1px 10px;min-width:3ch;text-align:center}.rw b.q{background:none;color:var(--r);border:1px dashed var(--r);font-size:13px;font-weight:600}
-.tp.sw{background:#000 var(--swani) center/104% no-repeat}.im.sw{height:140px;background:#000 var(--swani) center/contain no-repeat}.im.sw:after{display:none}.tp.az{background:#000 var(--azaym) center/104% no-repeat}.tp.mt{background:#000 var(--meat) center/125% no-repeat}.tp.sx{background:#000 var(--tray) center/104% no-repeat}.im.sx{height:140px;background:#000 var(--tray) center/contain no-repeat}.im.sx:after{display:none}.tp.ml{background:#000 var(--meals) center/108% no-repeat}.tp.ck{background:#000 var(--chk) center/104% no-repeat}.tp.gr{background:#000 var(--grill) center/106% no-repeat}.tp.em{display:grid;place-items:center;font-size:34px;line-height:1;background:var(--c)}.no{text-align:center;font-weight:700;padding:40px 16px}
+.tp.sw{background:#000 var(--swani) center/104% no-repeat}.im.sw{height:140px;background:#000 var(--swani) center/contain no-repeat}.im.sw:after{display:none}.tp.az{background:#000 var(--azaym) center/104% no-repeat}.tp.mt{background:#000 var(--meat) center/125% no-repeat}.tp.sx{background:#000 var(--tray) center/104% no-repeat}.im.sx{height:140px;background:#000 var(--tray) center/contain no-repeat}.im.sx:after{display:none}.tp.ml{background:#000 var(--meals) center/108% no-repeat}.tp.ck{background:#000 var(--chk) center/104% no-repeat}.tp.gr{background:#000 var(--grill) center/106% no-repeat}.tp.em{display:grid;place-items:center;font-size:34px;line-height:1;background:var(--c)}.fr{font-size:1.4em;line-height:1;font-weight:600}.no{text-align:center;font-weight:700;padding:40px 16px}
 .f{margin:30px 16px;padding:20px;border-radius:12px;background:#e9c86c;text-align:center;border:3px double var(--m)}
 .cb{display:inline-block;margin:5px;padding:8px 16px;border-radius:24px;background:var(--m);color:var(--y);text-decoration:none;font-weight:700;direction:ltr}
 </style></head><body>
@@ -62,7 +62,7 @@ const T=`صنية التوفير|835|½ فرخة مشوي أو مندي + 1 لح
 صنية اللحوم|2600|2 لحم مندي + كيلو استيك مشوي + ½ كفتة + ½ طرب + 5 أرز بسمتي + سلطات
 صنية السعادة|3150|كيلو مخلي صدور + ½ كفتة + ½ ممبار + 2 لحم مندي + 4 حمام محشي + 4 خضار اليوم + 6 أرز بسمتي + سلطات
 صنية الصحاب|3200|فرخة مندي + فرخة مشوي + 2 لحم مندي + ½ ممبار + كيلو كفتة + ½ طرب + 3 ملوخية + 5 شوربة + 8 أرز بسمتي + سلطات
-صنية حضرموت المشكلة|3600|2 لحم مندي + فرخة مشوي + كيلو استيك مشوي + كيلو كفتة + ½ ممبار + ½ طرب + 2 حمام مشوي + 7 أرز بسمتي + سلطات`;
+صنية حضرموت المشكلة|3600|فرخة مندي + فرخة مشوي + كيلو استيك مشوي + كيلو كفتة + ½ ممبار + ½ طرب + 3 حمام مشوي + 7 أرز بسمتي + سلطات`;
 const S=[["meals","الوجبات",0,`¼ فرخة + ⅛ كفتة + الأرز والسلطة|195
 ½ فرخة مشوية شيش + الأرز والسلطة|190
 ½ فرخة مشوية سليم + الأرز والسلطة|190
@@ -133,12 +133,13 @@ const S=[["meals","الوجبات",0,`¼ فرخة + ⅛ كفتة + الأرز و
 علبة طحينة إضافي كبيرة|40
 طبق سلطة إضافي كبير|25`],["drinks","المشروبات",4,`بيبسي كانز|25
 مياه معدنية|10`]];
+const fx=s=>s.replace(/[¼½¾⅓⅛]/g,"<span class=fr>$&</span>");
 const nz=s=>s.replace(/[\u064B-\u0652\u0640]/g,"").replace(/[أإآ]/g,"ا").replace(/ة/g,"ه").replace(/ى/g,"ي").toLowerCase();
-const cards=(s,k,c)=>`<div class="o">`+s.split("\n").map((l,i)=>{const[n,p,d]=l.split("|");return`<article class="oc it" data-t="${nz(n+" "+d)}" style="--ph:var(--p${(i+k)%8})"><div class="im${c?" "+c:""}"><span class="pr">${p}</span></div><h3>${n}</h3><p>${d}</p></article>`}).join("")+`</div>`;
+const cards=(s,k,c)=>`<div class="o">`+s.split("\n").map((l,i)=>{const[n,p,d]=l.split("|");return`<article class="oc it" data-t="${nz(n+" "+d)}" style="--ph:var(--p${(i+k)%8})"><div class="im${c?" "+c:""}"><span class="pr">${p}</span></div><h3>${fx(n)}</h3><p>${fx(d)}</p></article>`}).join("")+`</div>`;
 const ico=p=>typeof p!="string"?`<i class="tp" style="--ph:var(--p${p})"></i>`:p[0]=="@"?`<i class="tp em">${p.slice(1)}</i>`:`<i class="tp ${p}"></i>`;
 const sec=(id,t,b,dk,p)=>`<section class="${dk?"dk":""}" data-k="${id}"><div class="th"><h2 class="t">${t}</h2>${ico(p)}</div>${b}</section>`;
 let h=sec("offers","عروض حضرموت",cards(O,0,"sw"),1,"sw")+sec("trays","منيو الصواني",cards(T,3,"sx"),1,"sx"),tabs=[["all","الكل"],["offers","العروض"],["trays","الصواني"]];
-for(const[id,t,k,d]of S){tabs.push([id,t]);h+=sec(id,t,`<div class="l">`+d.split("\n").map(l=>{const[a,b]=l.split("|");return`<div class="rw it" data-t="${nz(a)}"><span>${a}</span><i></i>${b?`<b${/^\d+$/.test(b)?"":" class=q"}>${b}</b>`:""}</div>`}).join("")+`</div>`,0,({feast:"az",meat:"mt",meals:"ml",chicken:"ck",grill:"gr",drinks:"@🥤",kitchen:"@🍲",extra:"@🥗",sand:"@🥙"})[id]||0)}
+for(const[id,t,k,d]of S){tabs.push([id,t]);h+=sec(id,t,`<div class="l">`+d.split("\n").map(l=>{const[a,b]=l.split("|");return`<div class="rw it" data-t="${nz(a)}"><span>${fx(a)}</span><i></i>${b?`<b${/^\d+$/.test(b)?"":" class=q"}>${b}</b>`:""}</div>`}).join("")+`</div>`,0,({feast:"az",meat:"mt",meals:"ml",chicken:"ck",grill:"gr",drinks:"@🥤",kitchen:"@🍲",extra:"@🥗",sand:"@🥙"})[id]||0)}
 mn.innerHTML=h+`<p class="no" id="no" hidden>لا توجد نتائج، جرّب كلمة أخرى</p>`;
 let cur="all";tb.innerHTML=tabs.map(([k,t])=>`<button data-k="${k}" aria-pressed="${k=="all"}">${t}</button>`).join("");
 function F(){const q=nz(sq.value.trim());let any=0;mn.querySelectorAll("section").forEach(s=>{const ok=cur=="all"||cur==s.dataset.k;let n=0;s.querySelectorAll(".it").forEach(e=>{const m=e.dataset.t.includes(q);e.hidden=!m;n+=m});s.hidden=!ok||!n;any+=ok&&n>0});no.hidden=any>0}
